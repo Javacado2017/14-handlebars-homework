@@ -7,25 +7,32 @@ var orm = {
     var queryString = 'SELECT * FROM burgers';
     connection.query(queryString, [cb], function(err, result) {
       if (err) throw err;
-      console.log(result);
+      cd(result);
+      //console.log(result);
     });
   },
 
   //Per homework, insertOne template code, fix later, "using burger specific input??
-  insertOne: function(**property**, cb) {
-    var queryString = '**comand here**';
-    connection.query(queryString, [**property**, cb], function(err, result) {
+  insertOne: function(burger_name, cb) {
+    var queryString = 'INSERT INTO burgers SET ?';
+    connection.query(queryString, [burger_name, cb], {
+      burger_name: burger_name,
+      devoured: false,
+    }, 
+    function(err, result) {
       if (err) throw err;
-      console.log(result);
+      cd(result);
+      //console.log(result);
     });
   },
   
   //Per homework, updateOne template code, fix later, "using burger specific input??
-  updateOne: function(**property**, cb) {
-    var queryString = '**comand here**';
-    connection.query(queryString, [**property**, cb], function(err, result) {
+  updateOne: function(id, cb) {
+    var queryString = 'UPDATE burgers SET ? WHERE ?';
+    connection.query(queryString, [{devoured: true}, {id: id}], function(err, result) {
       if (err) throw err;
-      console.log(result);
+      cd(result);
+      //console.log(result);
     });
   },
   

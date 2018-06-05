@@ -9,15 +9,15 @@ var burger = {
   },
 
   //Per homework, fix later, "using burger specific input?? for the ORM"
-  create: function(**propery, cb) {
-    orm.insertOne('burger', **property**, function(res) {
+  insertOne: function(burger_name, cb) {
+    orm.insertOne('burger', burger_name, function(res) {
       cb(res);
     });
   },
 
   //Per homework, fix later, "using burger specific input?? for the ORM"
-  update: function(**property**, cb) {
-    orm.updateOne('burger', **property**, function(res) {
+  updateOne: function(id, cb) {
+    orm.updateOne('burger', id, function(res) {
       cb(res);
     });
   },
