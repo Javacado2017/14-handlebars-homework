@@ -9,7 +9,7 @@
                         <div class="input-group">
                             <li class="form-control">{{id}}. {{burger_name}}</li>
                                 <span class="input-group-btn">
-                                    <button <button class="btn btn-default devour" type="submit">Devour</button>
+                                    <button class="btn btn-default devour" type="submit">Devour</button>
                                 </span>
                         </div>
                     </form>
@@ -22,15 +22,31 @@
     <div class="col-lg-6">
         <h4><center>DEVOURED BURGERS</center></h4>
         <div id="devouredBurger">
-
-            {{#each burgers}}
-                {{#if this.devoured}}
-                    <ul class="list-group">
+            <ul class="list-group">
+                {{#each burgers}}
+                    {{#if this.devoured}}
                         <li class="list-group-item">{{id}}. {{burger_name}}</li>
-                    </ul>
-                {{/if}}
-            {{/each}}
-
+                    {{/if}}
+                {{/each}}
+            </ul>
         </div>
     </div>
 </div>
+
+ <form action="/api/burgers" method="POST">
+    <div class="row">
+        <center>  
+            <br><br>
+            <h4>ENTER A BURGER TO DEVOUR ... </h4>
+            <div class="entry input-group col-lg-8 justify-content-center">
+                    <input class="form-control" name="burger_name" type="text" placeholder="Add a burger ...">
+                    <span class="input-group-btn">
+                        <button id="addBurger" type="submit" class="btn btn-default button-add">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+            </div>
+            <br><br>
+        </center>  
+    </div>
+</form>

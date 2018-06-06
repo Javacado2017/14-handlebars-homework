@@ -31,11 +31,11 @@ var orm = {
 
   all: function(tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function(err, res) {
       if (err) {
         throw err;
       }
-      cb(result);
+      cb(res);
     });
   },
 
@@ -51,11 +51,11 @@ var orm = {
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, vals, function(err, res) {
       if (err) {
         throw err;
       }
-      cb(result);
+      cb(res);
     });
   },
 
@@ -68,11 +68,11 @@ var orm = {
     queryString += condition;
 
     console.log(queryString);
-    connection.query(queryString, function(err, result) {
+    connection.query(queryString, function(err, res) {
       if (err) {
         throw err;
       }
-      cb(result);
+      cb(res);
     });
   },
 
