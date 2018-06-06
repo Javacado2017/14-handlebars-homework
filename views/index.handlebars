@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-6">
+        <h4><center>CONSUMABLE BURGERS</center></h4>
+        <div id="consumableBurger">
+
+            {{#each burgers}}
+                {{#unless devoured}}
+                    <form action="/api/burgers/{{id}}" method="POST">
+                        <div class="input-group">
+                            <li class="form-control">{{id}}. {{burger_name}}</li>
+                                <span class="input-group-btn">
+                                    <button <button class="btn btn-default devour" type="submit">Devour</button>
+                                </span>
+                        </div>
+                    </form>
+                {{/unless}}
+            {{/each}}
+
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <h4><center>DEVOURED BURGERS</center></h4>
+        <div id="devouredBurger">
+
+            {{#each burgers}}
+                {{#if this.devoured}}
+                    <ul class="list-group">
+                        <li class="list-group-item">{{id}}. {{burger_name}}</li>
+                    </ul>
+                {{/if}}
+            {{/each}}
+
+        </div>
+    </div>
+</div>

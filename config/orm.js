@@ -1,41 +1,81 @@
-var connection = require('./connection.js');
+var connection = require("../config/connection.js");
+
+function printQuestionMarks(num) {
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
+
+function objToSql(ob) {
+  var arr = [];
+
+  for (var key in ob) {
+    var value = ob[key];
+
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+      arr.push(key + "=" + value);
+    }
+  }
+
+  return arr.toString();
+}
 
 var orm = {
 
-  //Per homework, selectAll template code, fix later, assuming it's select the database
-  selectAll: function(cb) {
-    var queryString = 'SELECT * FROM burgers';
-    connection.query(queryString, [cb], function(err, result) {
-      if (err) throw err;
-      cd(result);
-      //console.log(result);
+  all: function(tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
     });
   },
 
-  //Per homework, insertOne template code, fix later, "using burger specific input??
-  insertOne: function(burger_name, cb) {
-    var queryString = 'INSERT INTO burgers SET ?';
-    connection.query(queryString, [burger_name, cb], {
-      burger_name: burger_name,
-      devoured: false,
-    }, 
-    function(err, result) {
-      if (err) throw err;
-      cd(result);
-      //console.log(result);
+  create: function(table, cols, vals, cb) {
+    var queryString = "INSERT INTO " + table;
+
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
+
+    console.log(queryString);
+
+    connection.query(queryString, vals, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
     });
   },
-  
-  //Per homework, updateOne template code, fix later, "using burger specific input??
-  updateOne: function(id, cb) {
-    var queryString = 'UPDATE burgers SET ? WHERE ?';
-    connection.query(queryString, [{devoured: true}, {id: id}], function(err, result) {
-      if (err) throw err;
-      cd(result);
-      //console.log(result);
+
+  update: function(table, objColVals, condition, cb) {
+    var queryString = "UPDATE " + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE ";
+    queryString += condition;
+
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
     });
   },
-  
+
 };
 
 module.exports = orm;

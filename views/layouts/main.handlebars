@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Handlebars Homework</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <center class="jumbotron">
+                <h1>EAT A BURGER!</h1>
+            </center>
+        </div>
+
+        {{{ body }}}
+
+        <form action="/api/burgers" method="POST">
+            <div class="row">
+                <center>  
+                    <br><br>
+                    <h4>ENTER A BURGER TO DEVOUR ... </h4>
+                    <div class="entry input-group col-lg-8 justify-content-center">
+                            <input class="form-control" type="text" placeholder="Add a burger ...">
+                            <span class="input-group-btn">
+                                <button id="addBurger" type="submit" class="btn btn-default button-add">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                    </div>
+                </center>  
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
